@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 
 Vue.config.productionTip = false
 
@@ -12,4 +15,30 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
+})
+router.beforeEach((to, from, next) => {
+  /* 路由发生变化修改页面title */
+  
+  var dates=new Date().getTime()-24*60*60*1000
+  var loginTime=localStorage.getItem('timer')
+  if(to.meta.isLogin){
+    if(dates>loginTime){
+      next({
+        path:'/login'
+      })
+    }else if(to.meta.open==false){
+      alert('暂未开放,敬请期待')
+      next(false)
+    }else{
+      if (to.meta.title) {
+        document.title = to.meta.title
+      }
+      next()
+    }
+  }else{
+    if (to.meta.title) {
+      document.title = to.meta.title
+    }
+    next()
+  }
 })
