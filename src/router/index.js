@@ -8,6 +8,7 @@ import message from '@/components/message'
 import brand from '@/components/brand'
 import shop from '@/components/shop'
 import activity from '@/components/activity'
+import home from '@/components/home'
 
 Vue.use(Router)
 
@@ -43,56 +44,69 @@ export default new Router({
         isLogin:true,
         title:'首页'
       },
-      component:index
+      component:index,
+      redirect:'/home',
+      children:[
+        {
+          path:'/home',
+          name:'home',
+          meta:{
+            isLogin:true,
+            title:'首页',
+            open:true
+          },
+          component:home
+        },
+        {
+          path:'/systems',
+          name:'systems',
+          meta:{
+            isLogin:true,
+            title:'系统管理',
+            open:false
+          },
+          component:systems
+        },
+        {
+          path:'/message',
+          name:'message',
+          meta:{
+            isLogin:true,
+            title:'基本信息管理'
+          },
+          component:message
+        },
+        {
+          path:'/brand',
+          name:'brand',
+          meta:{
+            isLogin:true,
+            title:'平台管理',
+            open:false
+          },
+          component:brand
+        },
+        {
+          path:'/shop',
+          name:'shop',
+          meta:{
+            isLogin:true,
+            title:'商品管理',
+            open:false
+          },
+          component:shop
+        },
+        {
+          path:'/activity',
+          name:'activity',
+          meta:{
+            isLogin:true,
+            title:'活动管理',
+            open:false
+          },
+          component:activity
+        }
+      ]
     },
-    {
-      path:'/systems',
-      name:'systems',
-      meta:{
-        isLogin:true,
-        title:'系统管理',
-        open:false
-      },
-      component:systems
-    },
-    {
-      path:'/message',
-      name:'message',
-      meta:{
-        isLogin:true,
-        title:'基本信息管理'
-      },
-      component:message
-    },
-    {
-      path:'/brand',
-      name:'brand',
-      meta:{
-        isLogin:true,
-        title:'平台管理',
-        open:false
-      },
-      component:brand
-    },
-    {
-      path:'/shop',
-      name:'shop',
-      meta:{
-        isLogin:true,
-        title:'商品管理',
-        open:false
-      },
-      component:shop
-    },
-    {
-      path:'/activity',
-      name:'activity',
-      meta:{
-        isLogin:true,
-        title:'活动管理',
-        open:false
-      },
-      component:activity
-    }
   ]
 })
