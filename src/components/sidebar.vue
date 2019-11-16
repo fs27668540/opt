@@ -31,17 +31,27 @@
         <i class="el-icon-s-flag"></i>
         <span slot="title">活动管理</span>
       </el-menu-item>
+      <el-menu-item index="deciphering">
+        <i class="el-icon-s-flag"></i>
+        <span slot="title">加密解密</span>
+      </el-menu-item>
+      <el-menu-item index="jsmethods">
+        <i class="el-icon-s-flag"></i>
+        <span slot="title">JavaScript方法</span>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
 
 <script>
 export default {
-    props:{
+    data(){
+      return{
         act:''
+      }
     },
-    methods:{
-        
+    created(){
+      this.act=this.$route.path.replace('/','').replace('home','index')
     }
 }
 </script>

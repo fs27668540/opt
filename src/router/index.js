@@ -9,6 +9,8 @@ import brand from '@/components/brand'
 import shop from '@/components/shop'
 import activity from '@/components/activity'
 import home from '@/components/home'
+import deciphering from '@/components/deciphering'
+import jsmethods from '@/components/jsmethods'
 
 Vue.use(Router)
 
@@ -105,6 +107,26 @@ export default new Router({
             open:false
           },
           component:activity
+        },
+        {
+          path:'/deciphering',
+          name:'deciphering',
+          meta:{
+            isLogin:true,
+            title:'加密解密',
+            open:true
+          },
+          component:deciphering
+        },
+        {
+          path:'/jsmethods',
+          name:'jsmethods',
+          meta:{
+            isLogin:true,
+            title:'js方法',
+            open:true
+          },
+          component:jsmethods
         }
       ]
     },

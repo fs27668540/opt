@@ -7,7 +7,7 @@
         <el-container>
             <el-scrollbar style="height:100%">
                 <el-aside width="200px">
-                    <sidebar :act="index"></sidebar>
+                    <sidebar></sidebar>
                 </el-aside>
             </el-scrollbar>
             <el-main>
