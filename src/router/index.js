@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import login from '@/components/login'
+import register from '@/components/register'
 import NotFound from '@/components/404'
 import index from '@/components/index'
 import systems from '@/components/system'
@@ -38,6 +39,15 @@ export default new Router({
         title:'登录'
       },
       component: login,
+    },
+    {
+      path: '/register',
+      name: 'register',
+      meta:{
+        isLogin:false,
+        title:'登录'
+      },
+      component: register,
     },
     {
       path:'/index',

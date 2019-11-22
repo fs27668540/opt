@@ -6,7 +6,10 @@ import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
-
+import http from './api/http.js'
+import ports from './api/port'
+Vue.prototype.$http = http
+Vue.prototype.ports = ports
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

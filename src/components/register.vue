@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <div class="bg"></div>
-    <div class="login-box">
-      <p>Login</p>
+  <div class="register">
+    <div class="register-box">
+      <p>注册账号</p>
       <el-input placeholder="请输入账号" v-model="input"></el-input>
       <el-input placeholder="请输入密码" v-model="pswinput" show-password></el-input>
-      <el-button type="primary" @click="goIndex()">登录</el-button>
-      <p @click="Toregister()">还没有账号？立即注册</p>
+      <el-button type="primary" @click="register()">注册</el-button>
+      <p @click="Tologin()">已有账号？去登录</p>
     </div>
   </div>
 </template>
@@ -20,42 +19,40 @@ export default {
     };
   },
   methods: {
-    goIndex() {
+    Tologin() {
+      this.$router.push({ path: "/login" });
+    },
+    register() {
       if (!this.input.trim() || !this.pswinput.trim()) {
         this.$message.error("不能为空");
       } else {
         this.$http.post(
-          this.ports.oauth.login,
+          this.ports.oauth.resigter,
           {
             username: this.input,
-            password: this.pswinput
+            password: this.pswinput,
           },
           res => {
-            if (res.data.status == 1) {
-              this.$message.success("登录成功");
+            if (res.success) {
+              // 返回正确的处理
+              this.$message.success("注册成功");
+              this.$router.push({ path: "/login" });
             } else {
-              this.$message.error(res.data.info);
+              
             }
+          },
+          err => {
+            
           }
         );
       }
-    },
-    Toregister() {
-      this.$router.push({ path: "/register" });
     }
   }
 };
 </script>
 
-<style lang='scss' scoped>
-.bg {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background: #0e0731;
-  z-index: -1;
-}
-.login-box {
+<style lang="scss" scoped>
+.register-box {
   width: 450px;
   position: fixed;
   top: 40%;
@@ -79,10 +76,10 @@ export default {
 }
 </style>
 <style>
-.login-box .el-input {
+.register-box .el-input {
   margin-bottom: 22px;
 }
-.login-box .el-button--primary {
+.register-box .el-button--primary {
   width: 100%;
 }
 </style>
