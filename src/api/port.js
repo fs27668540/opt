@@ -1,8 +1,8 @@
 export default {
     oauth: {
-        login: '/login', // 登录
+        login: '/api/login', // 登录
         logout: '/oauth/logout', // // 退出
-        resigter:'/resigter'
+        resigter:'/api/resigter'
     },
     user: {
         addUser: '/user/add',
