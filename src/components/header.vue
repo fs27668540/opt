@@ -1,4 +1,5 @@
 <template>
+    <div id="header">
       <el-header>
           <div>
               <p>数据分析管理平台</p>
@@ -21,14 +22,22 @@
             </el-dropdown>
           </div>
       </el-header>
+    <dialoginfo :userinfo="userinfo" @closeDialog='closeDialog' v-if="dialogshow"></dialoginfo>
+    </div>
 </template>
 
 <script>
+import dialoginfo from './dialog.vue'
 export default {
     data(){
         return{
-            input:''
+            input:'',
+            dialogshow:false,
+            userinfo:''
         }
+    },
+    components:{
+        dialoginfo
     },
     methods:{
         handleCommand(command){
@@ -37,14 +46,23 @@ export default {
                 this.$router.push('/login')
             }
             if(command=='usercenter'){
-                alert('没写呢')
+                this.$http.get(this.ports.user.getUserInfo,{},res=>{
+                    this.userinfo=res.data
+                    this.dialogshow=true
+                })
             }
+        },
+        closeDialog(){
+            this.dialogshow=false
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
+#header{
+    width: 100%;
+}
 .el-aside{
         height: 100%;
     }
@@ -61,7 +79,6 @@ export default {
     }
     header{
         width: 100%;
-        line-height: 60px;
         display: flex;
         justify-content: space-between;
     }

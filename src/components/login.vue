@@ -33,6 +33,9 @@ export default {
           res => {
             if (res.data.status == 1) {
               this.$message.success("登录成功");
+              localStorage.setItem('uid',res.data.uid)
+              localStorage.setItem('token',res.data.token)
+              this.$router.push({ path: "/home" });
             } else {
               this.$message.error(res.data.info);
             }

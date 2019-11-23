@@ -50,9 +50,6 @@ export default {
         height: 100%;
         color: #fff
     }
-    header{
-        line-height: 60px;
-    }
 </style>
 <style>
     .el-aside{

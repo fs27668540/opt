@@ -21,11 +21,9 @@ new Vue({
 })
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */
-  
-  var dates=new Date().getTime()-24*60*60*1000
-  var loginTime=localStorage.getItem('timer')
+  var token=localStorage.getItem('token')
   if(to.meta.isLogin){
-    if(dates>loginTime){
+    if(token==undefined){
       next({
         path:'/login'
       })

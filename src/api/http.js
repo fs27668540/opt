@@ -9,8 +9,14 @@ const TIME_OUT_MS = 60 * 1000 // 默认请求超时时间
 // http request 拦截器
 axios.interceptors.request.use(
     config => {
+        console.log(config)
         if (localStorage.getItem('token')) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
-            config.headers.Authorization ='Bearer '+ localStorage.getItem('token');
+            if(config.method=='get'){
+                config.params.token=localStorage.getItem('token');
+            }
+            if(config.method=='post'){
+                config.data+="&token="+localStorage.getItem('token');
+            }
         }
         return config;
     },
